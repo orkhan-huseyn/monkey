@@ -45,7 +45,7 @@ type Identifier struct {
 	Value string
 }
 
-func (i *Identifier) statementNode()       {}
+func (i *Identifier) expressionNode()      {}
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
 func (i *Identifier) String() string       { return i.Value }
 
@@ -62,6 +62,7 @@ func (ls *LetStatement) String() string {
 
 	out.WriteString(ls.TokenLiteral() + " ")
 	out.WriteString(ls.Name.String())
+	out.WriteString(" = ")
 
 	if ls.Value != nil {
 		out.WriteString(ls.Value.String())
