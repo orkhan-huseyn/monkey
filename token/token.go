@@ -23,7 +23,7 @@ const (
 	// ASSIGN represents assignment operator
 	ASSIGN = "="
 	// PLUS represents addition operator
-	PLUS = "-"
+	PLUS = "+"
 	// MINUS represents subtraction operator
 	MINUS = "-"
 	// BANG represents negation operator
