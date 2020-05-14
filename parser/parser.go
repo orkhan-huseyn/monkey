@@ -15,16 +15,26 @@ type (
 
 const (
 	_ int = iota
+	// LOWEST operator precedence
 	LOWEST
-	EQUALS      // ==
-	LESSGREATER // > or <
-	SUM         // +
-	PRODUCT     // *
-	PREFIX      // -X or !X
-	CALL        // myFunction(X)
+	// EQUALS (==) operator precedence
+	EQUALS
+	// LESSGREATER (> or <) operator precedence
+	LESSGREATER
+	// SUM (+) operator precedence
+	SUM
+	// PRODUCT (*) operator precedence
+	PRODUCT
+	// PREFIX (-X or !X) expression precedence
+	PREFIX
+	// CALL myFunction(X)) expression precedence
+	CALL //
 
 )
 
+// Parser is a struct
+// that parses program
+// and builds Abstract Syntax Tree
 type Parser struct {
 	l      *lexer.Lexer
 	errors []string
@@ -36,6 +46,9 @@ type Parser struct {
 	infixParseFns  map[token.TokenType]infixParseFn
 }
 
+// New creates a new parser
+// initializes curToken and peeKToken
+// and registers functions to parse different expressions
 func New(l *lexer.Lexer) *Parser {
 	p := &Parser{
 		l:      l,
@@ -66,6 +79,7 @@ func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
 	p.infixParseFns[tokenType] = fn
 }
 
+// ParseProgram parses program and returns root node of tree
 func (p *Parser) ParseProgram() *ast.Program {
 	program := &ast.Program{}
 	program.Statements = []ast.Statement{}
@@ -81,6 +95,7 @@ func (p *Parser) ParseProgram() *ast.Program {
 	return program
 }
 
+// Errors returns all parse errors as a slice
 func (p *Parser) Errors() []string {
 	return p.errors
 }
@@ -200,8 +215,8 @@ func (p *Parser) expectPeek(t token.TokenType) bool {
 	if p.peekTokenIs(t) {
 		p.nextToken()
 		return true
-	} else {
-		p.peekError(t)
-		return false
 	}
+
+	p.peekError(t)
+	return false
 }

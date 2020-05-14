@@ -2,6 +2,9 @@ package lexer
 
 import "monkey/token"
 
+// Lexer is a struct
+// that lexically analyzes program
+// and produces token list
 type Lexer struct {
 	input        string
 	position     int
@@ -9,12 +12,15 @@ type Lexer struct {
 	ch           byte
 }
 
+// New creates a new lexer
 func New(input string) *Lexer {
 	l := &Lexer{input: input}
 	l.readChar()
 	return l
 }
 
+// NextToken gives the next token without buffering
+// the token list untill token.EOF
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
 
@@ -107,9 +113,8 @@ func (l *Lexer) readChar() {
 func (l *Lexer) peekChar() byte {
 	if l.readPosition >= len(l.input) {
 		return 0
-	} else {
-		return l.input[l.readPosition]
 	}
+	return l.input[l.readPosition]
 }
 
 func (l *Lexer) readIdentifier() string {
