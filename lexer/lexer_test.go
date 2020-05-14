@@ -6,7 +6,7 @@ import (
 )
 
 type TestEntry struct {
-	expectedType    token.TokenType
+	expectedType    token.Type
 	expectedLiteral string
 }
 
@@ -104,7 +104,7 @@ func TestNextToken(t *testing.T) {
 		{token.EQ, "=="},
 		{token.INT, "10"},
 		{token.INT, "10"},
-		{token.NOT_EQ, "!="},
+		{token.NOTEQ, "!="},
 		{token.INT, "9"},
 		{token.EOF, ""},
 	}

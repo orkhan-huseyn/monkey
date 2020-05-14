@@ -1,53 +1,78 @@
 package token
 
-type TokenType string
+// Type denotes type of token
+type Type string
 
+// Token denotes a token object
 type Token struct {
-	Type    TokenType
+	Type    Type
 	Literal string
 }
 
 const (
+	// ILLEGAL is illegal identifier
 	ILLEGAL = "ILLEGAL"
-	EOF     = "EOF"
+	// EOF denotes end of file
+	EOF = "EOF"
 
-	// Identifiers and literals
+	// IDENT represents an identifier
 	IDENT = "IDENT"
-	INT   = "INT"
+	// INT represents an integer
+	INT = "INT"
 
-	// Operators
-	ASSIGN   = "="
-	PLUS     = "-"
-	MINUS    = "-"
-	BANG     = "!"
+	// ASSIGN represents assignment operator
+	ASSIGN = "="
+	// PLUS represents addition operator
+	PLUS = "-"
+	// MINUS represents subtraction operator
+	MINUS = "-"
+	// BANG represents negation operator
+	BANG = "!"
+	// ASTERISK represents multiplication operator
 	ASTERISK = "*"
-	SLASH    = "/"
+	// SLASH represents division operator
+	SLASH = "/"
 
-	LT     = "<"
-	GT     = ">"
-	EQ     = "=="
-	NOT_EQ = "!="
+	// LT - less than operator
+	LT = "<"
+	// GT represents greater than operator
+	GT = ">"
+	// EQ represents equals operators
+	EQ = "=="
+	// NOTEQ represents not equals operator
+	NOTEQ = "!="
 
-	// Delimiters
-	COMMA     = ","
+	// COMMA represents comma :)
+	COMMA = ","
+	// SEMICOLON represents, well, semicolon
 	SEMICOLON = ";"
 
+	// LPAREN represents left parenthesis
 	LPAREN = "("
+	// RPAREN represents right parenthesis
 	RPAREN = ")"
+	// LBRACE represents left curly brace
 	LBRACE = "{"
+	// RBRACE represents right curly brace
 	RBRACE = "}"
 
-	//Keywords
+	// FUNCTION represents a fn keyword
 	FUNCTION = "FUNCTION"
-	LET      = "LET"
-	TRUE     = "TRUE"
-	FALSE    = "FALSE"
-	IF       = "IF"
-	ELSE     = "ELSE"
-	RETURN   = "RETURN"
+	// LET denotes let keyword
+	LET = "LET"
+	// TRUE represents true keyrord
+	TRUE = "TRUE"
+	// FALSE represents false keyword
+	FALSE = "FALSE"
+	// IF represents if keyword
+	IF = "IF"
+	// ELSE represents else keyword
+	ELSE = "ELSE"
+	// RETURN represents return keyword
+	RETURN = "RETURN"
 )
 
-var keywords = map[string]TokenType{
+var keywords = map[string]Type{
 	"fn":     FUNCTION,
 	"let":    LET,
 	"true":   TRUE,
@@ -57,7 +82,9 @@ var keywords = map[string]TokenType{
 	"return": RETURN,
 }
 
-func LookupIdent(ident string) TokenType {
+// LookupIdent finds correct token
+// for program keyword
+func LookupIdent(ident string) Type {
 	if tok, ok := keywords[ident]; ok {
 		return tok
 	}

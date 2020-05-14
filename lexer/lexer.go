@@ -51,7 +51,7 @@ func (l *Lexer) NextToken() token.Token {
 			ch := l.ch
 			l.readChar()
 			tok = token.Token{
-				Type:    token.NOT_EQ,
+				Type:    token.NOTEQ,
 				Literal: string(ch) + string(l.ch),
 			}
 		} else {
@@ -141,6 +141,6 @@ func isDigit(ch byte) bool {
 	return '0' <= ch && ch <= '9'
 }
 
-func newToken(tokenType token.TokenType, ch byte) token.Token {
+func newToken(tokenType token.Type, ch byte) token.Token {
 	return token.Token{Type: tokenType, Literal: string(ch)}
 }
