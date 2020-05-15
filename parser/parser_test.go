@@ -280,7 +280,7 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 		},
 		{
 			"!(true == true)",
-			"(!(true ==))",
+			"(!(true == true))",
 		},
 		{
 			"true",
