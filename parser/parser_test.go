@@ -69,7 +69,6 @@ func TestReturnStatements(t *testing.T) {
 			t.Errorf("retursStmt.TokenLiteral is not 'return'. Got %q", returnStmt.TokenLiteral())
 		}
 	}
-
 }
 
 func TestIdentifierExpression(t *testing.T) {
@@ -212,7 +211,6 @@ func TestParsingInfixExpressions(t *testing.T) {
 			return
 		}
 	}
-
 }
 
 func TestOperatorPrecedenceParsing(t *testing.T) {
